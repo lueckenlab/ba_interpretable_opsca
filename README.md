@@ -12,60 +12,64 @@ Openproblems provides us a living benchmark, however the results of that benchma
     
 - understand openproblems infrastructure
 - add new integration methods to batch integration task
-    - DrVI, sysVI, scPoli
+    - DRVI, (sysVI, scPoli)
+    - other methods from other lab, scMerge
 - investigate metrics
-    - scib metrics
-        - how do they correspond to our data?
-        - e.g. ASW, but we have nested batch
-        - e.g. cell-type based metrics - do large scores also come from good cell type separation, rare celltypes
-    - **Local metrics**
-        - cell type specific biological metrics
-        - rare cell types
-    - extend existing metrics for batch evaluation
-        - e.g. NMI, ARI for batch → lower = better
-    - add gene-set based metric (hardcoded)
-        - evaluate manually
+    - Add existing published metrics
+        - **ASW improved**
+        - Lutge et al. paper **CellMixS**
+        - **(kSIM)**
+    - check how scIB metrics differ from these on existing open problems datasets
 - analyse 1 dataset in detail
-    - HLCA
+    - ~~HLCA,~~ mouse pancreas
     - look at biology beyond cell type
 
 ### Deliverables
 
+- Add 1 method and 1 metric to OP
 - prototype investigation of integration results on 1 dataset
 - written project proposal of the research plan of the thesis
-- intermediate presentation
+- ~~intermediate presentation~~
 
-## Translation of Openproblems to single-cell analysis workflows
+## Translation of Open problems to single-cell analysis workflows
 
 - **Main questions:**
-    1. *How can we demonstrate the **usability** of openproblems to day-to-day single cell analysis?*
-    2. *How can we improve the **interpretability** of integration task in openproblems?*
+    1. *How can you **translate** open problems results to best practices?*
+    2. *How can we **interpret** open problems results and their **generalization** to unseen use cases (datasets)?*
+        1. How do we interpret differences in metric-based ranking
+        2. Can we predict how a method will work on a new dataset?
 - **Scope:** Case-study on batch integration task
 
-### Work package 1: Metrics evaluation
+### **Work package 0: Add training data**
 
+- add Archmap datasets & existing integrations from HCA integration team
+- Conceptualize which dataset characteristics you want to log as predictors of integration performance
+- Target: 10 more datasets
+
+### Work package 1: Metrics evaluation - Are we evaluating good performance correctly?
+
+- scib metrics
+    - how do they correspond to ~~our~~ data? get this info from the papers directly
+    - e.g. **ASW**, but we have nested batch
+    - e.g. cell-type based metrics - do large scores also come from good cell type separation, rare celltypes
 - Range of scIB metrics
     - similar to feature selection metrics selection https://doi.org/10.1038/s41592-025-02624-3
     - correlation of metrics, range, how useful are metrics compared to others?
 - How can we improve interpretability of the benchmark results?
     - Improved documentation of metrics
     - Case study of integrated object vs metrics (Work package 3)
+- Show limitation of x metrics
+    - follow up with a potential  improvement
+    - don’t reinvent the wheel
 
-### Work package 2: Implementing new metrics
+### Work package 2: Predict model performance
 
-- literature search of existing metrics that we are missing (e.g. kSIM, scGraph)
-    - Pegasus package, **kSIM**: https://doi.org/10.1038/s41592-020-0905-x
-    - **scGraph**: https://doi.org/10.1101/2024.04.02.587824, https://www.biorxiv.org/content/10.1101/2024.04.02.587824v1.full.pdf
-- **Nested batch effect metrics**
-    - modified ASW for nested batch effect → **follow up with more nested batch correction evaluations**
-    - Would it make sense to develop a new metric dedicated to nested batch effects, maybe even cross system/species?
-- **Biologically informed metrics**
-    - marker-gene-based metrics with dataset-specific marker genes
-    - other dataset-specific gene programs
-- **Local metrics**
-    - cell type specific biological metrics
-- extend existing metrics for batch evaluation
-    - e.g. NMI, ARI for batch → lower = better
+- Build a predictor on dataset features → Can we predict model performance from dataset features?
+    - check Robrecht’s trajectory paper on order of testing datasets
+    - small N large K problem
+- Which characteristics do we want to use?
+    - correlated characteristics
+- What aspects of the datasets are more important for the integration?
 
 ### Work package 3: Manual evaluation
 
