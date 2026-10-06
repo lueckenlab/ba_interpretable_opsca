@@ -15,6 +15,6 @@ dependencies:
   - zarr<3
   - ipykernel
   - requests
-  # - pip
-  # - pip:
-  #   - # any pip dependencies go here
+  - pip
+  - pip:
+      - scib
