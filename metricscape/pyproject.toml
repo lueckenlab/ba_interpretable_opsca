@@ -1,0 +1,40 @@
+[build-system]
+build-backend = "hatchling.build"
+requires = ["hatchling"]
+
+[project]
+name = "metricscape"
+description = "Exploratory evaluation of benchmark metrics over real or simulated search spaces"
+readme = "README.md"
+requires-python = ">=3.10"
+license = { file = "LICENSE" }
+authors = [{ name = "Lücken Lab" }]
+version = "0.1.0"
+dependencies = ["numpy", "pandas", "scipy", "matplotlib", "pyyaml"]
+
+[project.optional-dependencies]
+dev = ["pre-commit", "twine>=4.0.2"]
+doc = ["sphinx>=7", "sphinx-book-theme", "myst-nb", "sphinx-autodoc-typehints", "sphinxcontrib-bibtex", "sphinx-copybutton"]
+test = ["pytest", "coverage"]
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/metricscape"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = ["--import-mode=importlib"]
+
+[tool.ruff]
+line-length = 120
+src = ["src"]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "W", "D"]
+ignore = ["D100", "D104", "D203", "D213"]
+
+[tool.ruff.lint.pydocstyle]
+convention = "numpy"
+
+[tool.ruff.lint.per-file-ignores]
+"tests/*" = ["D"]
+"docs/*" = ["D"]
